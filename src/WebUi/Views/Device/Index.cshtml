@@ -1,0 +1,44 @@
+﻿@model EDeviceClaims.WebUi.Models.DeviceListViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Manage My Devices</h2>
+
+        @foreach (var thing in Model)
+            {
+            <div class="col-md-10" style="margin-bottom:20px">
+                <div class="col-md-3">
+                    @if (thing.Name == "iPhone 6+")
+                    {
+                        <img src="https://sc01.alicdn.com/kf/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4/200855197/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4.jpg" width="250" alt="IPhone"/>
+                    }
+                    @if (thing.Name == "Android")
+                    {
+                        <img src="https://cdn.shopify.com/s/files/1/0808/0067/products/s7_edge_rugged_armor_title_f2701768-857d-4bb2-99d1-ceb484b5a017_large.jpg?v=1456440500" width="250" alt="Android"/>
+                    }
+                    @if (thing.Name == "Null")
+                    {
+                        <img src="http://intraweb.stockton.edu/eyos/sobl/content/images/msw%20faculty/noimage.gif" width="250" alt="no image"/>
+                    }
+                    
+                </div>
+                <div class="col-md-5" style="margin-top: 20px">
+                    <ul style="list-style:none;">
+
+                        <li>@thing.Name </li>
+                        <li> @thing.SerialNumber</li>
+
+                    </ul>
+                </div>
+                <div class="col-md-2" style="margin-top:200px">
+                    <a class="btn btn-default" href="/Home/Index">File A Claim &raquo;</a>
+                </div>
+                
+            </div>
+            
+        }
+
+        <!--<p><a class="btn btn-default" href="/Home/Index">File A Claim &raquo;</a></p>-->
+    </div>
+</div>
+
