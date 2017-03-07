@@ -5,21 +5,22 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EDeviceClaims.Repositories.Contexts
 {
-  public class EDeviceClaimsContext : IdentityDbContext<AuthorizedUser>
-  {
-    public DbSet<Policy> Policies { get; set; }
-
-    public EDeviceClaimsContext(string cn) : base(cn)
+    public class EDeviceClaimsContext : IdentityDbContext<AuthorizedUser>
     {
-    }
+        public DbSet<Policy> Policies { get; set; }
+        public DbSet<ClaimEntity> Claims { get; set; }
 
-    public EDeviceClaimsContext() : base("EDeviceClaimsContext", throwIfV1Schema: false)
-    {
-    }
+        public EDeviceClaimsContext(string cn) : base(cn)
+        {
+        }
 
-    public static EDeviceClaimsContext Create()
-    {
-      return new EDeviceClaimsContext();
+        public EDeviceClaimsContext() : base("EDeviceClaimsContext", throwIfV1Schema: false)
+        {
+        }
+
+        public static EDeviceClaimsContext Create()
+        {
+            return new EDeviceClaimsContext();
+        }
     }
-  }
 }
