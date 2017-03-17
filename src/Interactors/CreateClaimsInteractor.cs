@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace EDeviceClaims.Interactors
 {
-    public interface IGetClaimsInteractor
+    public interface ICreateClaimsInteractor
     {
         ClaimEntity GetByPolicyId(Guid policyId);
+        ClaimEntity Execute(Guid policyId);
     }
 
-    public class GetClaimsInteractor : IGetClaimsInteractor
+    public class CreateClaimsInteractor : ICreateClaimsInteractor
     {
         private IClaimsRepository Repo
         {
@@ -25,6 +26,11 @@ namespace EDeviceClaims.Interactors
         public ClaimEntity GetByPolicyId(Guid policyId)
         {
             return Repo.GetByPolicyId(policyId);
+        }
+
+        public ClaimEntity Execute(Guid policyId)
+        {
+            return new ClaimEntity { Id = Guid.NewGuid(), PolicyId = policyId };
         }
     }
 }

@@ -16,6 +16,7 @@ namespace EDeviceClaims.Repositories
     {
         public ClaimEntity GetByPolicyId(Guid policyId)
         {
+
             return ObjectSet
             .FirstOrDefault(c => c.PolicyId == policyId);
         }

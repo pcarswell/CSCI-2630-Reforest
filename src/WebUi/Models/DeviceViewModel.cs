@@ -1,5 +1,6 @@
 ﻿using System;
 using EDeviceClaims.Domain.Models;
+using System.Linq;
 
 namespace EDeviceClaims.WebUi.Models
 {
@@ -13,7 +14,7 @@ namespace EDeviceClaims.WebUi.Models
             Name = thing.DeviceName;
             WhenCreated = thing.WhenCreated;
             WhenLastUpdated = thing.WhenLastUpdated;
-            HasPendingClaim = false;
+            HasPendingClaim = thing.Claims.Any();
         }
 
         public string Name { get; set; }

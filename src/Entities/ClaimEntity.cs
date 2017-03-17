@@ -11,6 +11,6 @@ namespace EDeviceClaims.Entities
     public class ClaimEntity : EntityBase<Guid>
     {
         public Guid PolicyId { get; set; }
-        public virtual Policy Policy { get; set; }
+        public virtual PolicyEntity Policy { get; set; }
     }
 }

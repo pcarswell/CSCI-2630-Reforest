@@ -12,26 +12,21 @@ namespace EDeviceClaims.WebUi.Controllers
     [Authorize]
     public class ClaimsController : AppController
     {
-        private IPolicyService _policyService = new PolicyService();
+        //private IPolicyService _policyService = new PolicyService();
         private IClaimsService _claimsService = new ClaimsService();
         // GET: Claims 
-        public ActionResult NewClaim(Guid id)
-        {
-            var domainModel = _policyService.GetById(id);
-            var model = new DeviceViewModel(domainModel);
-            return View(model);
-        }
+        
 
         public ActionResult Start(Guid id)
         {
-            var domainModel = _claimsService.StartClaim(id);
-            var model = new ClaimViewModel(domainModel);
+            var claimDomainModel = _claimsService.StartClaim(id);
+            var model = new ClaimViewModel(claimDomainModel);
 
-            return View("Details", model);
+            return View(model);
         }
 
         
-        public ActionResult Details()
+        public ActionResult Details(Guid id)
         {
             return null;
         }

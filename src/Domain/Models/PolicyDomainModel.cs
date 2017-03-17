@@ -10,7 +10,7 @@ namespace EDeviceClaims.Domain.Models
     public class PolicyDomainModel
     {
 
-        public PolicyDomainModel(Policy policyEntity)
+        public PolicyDomainModel(PolicyEntity policyEntity)
         {
             Id = policyEntity.Id;
             Number = policyEntity.Number;
@@ -18,6 +18,12 @@ namespace EDeviceClaims.Domain.Models
             DeviceName = policyEntity.DeviceName;
             WhenCreated = policyEntity.WhenCreated;
             WhenLastUpdated = policyEntity.WhenLastModified;
+            Claims = new List<ClaimDomainModel>();
+
+            foreach(var claim in policyEntity.Claims)
+            {
+                Claims.Add(new ClaimDomainModel(claim));
+            }
         }
 
         public Guid Id { get; set; }
@@ -30,5 +36,6 @@ namespace EDeviceClaims.Domain.Models
 
         public DateTime WhenCreated { get; set; }
         public DateTime? WhenLastUpdated { get; set; }
+        public List<ClaimDomainModel> Claims { get; set; }
     }
 }

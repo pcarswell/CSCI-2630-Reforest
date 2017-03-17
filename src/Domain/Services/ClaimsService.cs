@@ -22,23 +22,23 @@ namespace EDeviceClaims.Domain.Services
         }
         private IGetPolicyInteractor _getPolicyInteractor;
 
-        private IGetClaimsInteractor GetClaimsInteractor
+        private ICreateClaimsInteractor CreateClaimsInteractor
         {
-            get { return _getClaimsInteractor ?? (_getClaimsInteractor = new GetClaimsInteractor()); }
-            set { _getClaimsInteractor = value; }
+            get { return _createClaimsInteractor ?? (_createClaimsInteractor = new CreateClaimsInteractor()); }
+            set { _createClaimsInteractor = value; }
         }
 
-        private IGetClaimsInteractor _getClaimsInteractor;
-
-
-
+        private ICreateClaimsInteractor _createClaimsInteractor;
+        
         public ClaimDomainModel StartClaim(Guid policyId)
         {
-            var policy = _getPolicyInteractor.GetById(policyId);
+            var policy = GetPolicyInteractor.GetById(policyId);
 
             if (policy == null) throw new ArgumentException("Policy for that Policy Id does not exist");
-            var existingClaim = _getClaimsInteractor.GetByPolicyId(policyId);
-            return new ClaimDomainModel();
+
+            var claim = CreateClaimsInteractor.Execute(policyId);
+            //var existingClaim = CreateClaimsInteractor.GetByPolicyId(policyId);
+            return new ClaimDomainModel(claim);
         }
     }
 }

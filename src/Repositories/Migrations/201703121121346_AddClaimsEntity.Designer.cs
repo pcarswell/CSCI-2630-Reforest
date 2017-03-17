@@ -7,13 +7,13 @@ namespace EDeviceClaims.Repositories.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addClaimsEntity : IMigrationMetadata
+    public sealed partial class AddClaimsEntity : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addClaimsEntity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddClaimsEntity));
         
         string IMigrationMetadata.Id
         {
-            get { return "201703030127427_addClaimsEntity"; }
+            get { return "201703121121346_AddClaimsEntity"; }
         }
         
         string IMigrationMetadata.Source

@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using EDeviceClaims.Entities;
+using System.Data.Entity;
 
 namespace EDeviceClaims.Repositories
 {
-    public interface IPolicyRepository : IEfRepository<Policy, Guid>
+    public interface IPolicyRepository : IEfRepository<PolicyEntity, Guid>
     {
-        Policy GetByPolicyNumber(string number);
-        ICollection<Policy> GetByUserId(string userId);
+        PolicyEntity GetByPolicyNumber(string number);
+        ICollection<PolicyEntity> GetByUserId(string userId);
 
     }
 
-    public class PolicyRepository : EfRepository<Policy, Guid>, IPolicyRepository
+    public class PolicyRepository : EfRepository<PolicyEntity, Guid>, IPolicyRepository
     {
         public PolicyRepository() : base(new EDeviceClaimsUnitOfWork())
         {
@@ -20,15 +21,17 @@ namespace EDeviceClaims.Repositories
 
         public PolicyRepository(IEfUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public Policy GetByPolicyNumber(string number)
+        public PolicyEntity GetByPolicyNumber(string number)
         {
             return ObjectSet
               .FirstOrDefault(p => p.Number.ToLower() == number.ToLower());
         }
 
-        public ICollection<Policy> GetByUserId(string userId)
+        
+
+        public ICollection<PolicyEntity> GetByUserId(string userId)
         {
-            return ObjectSet.Where(p => p.UserId == userId).ToList();
+            return ObjectSet.Where(p => p.UserId == userId).Include(c => c.Claims).ToList();
         }
     }
 }

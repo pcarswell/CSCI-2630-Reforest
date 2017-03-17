@@ -240,8 +240,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Device\Index.cshtml" />
-    <Content Include="Views\Claims\NewClaim.cshtml" />
     <Content Include="Views\Claims\Details.cshtml" />
+    <Content Include="Views\Device\Details.cshtml" />
+    <Content Include="Views\Device\GetClaimButton.cshtml" />
+    <Content Include="Views\Claims\Start.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

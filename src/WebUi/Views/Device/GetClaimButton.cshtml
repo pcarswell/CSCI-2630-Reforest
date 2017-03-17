@@ -1,0 +1,10 @@
+﻿@model EDeviceClaims.WebUi.Models.DeviceViewModel
+
+@if (Model.HasPendingClaim)
+{
+    @Html.ActionLink("Check Claim Status", "Details", "Claims", routeValues: new { id = Model.PolicyId }, htmlAttributes: new { @class = "btn btn-warning btn-sm" })
+}
+else
+{
+    @Html.ActionLink("Submit a Claim", "Start", "Claims", routeValues: new { id = Model.PolicyId }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+}

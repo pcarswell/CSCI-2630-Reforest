@@ -3,7 +3,7 @@ namespace EDeviceClaims.Repositories.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addClaimsEntity : DbMigration
+    public partial class AddClaimsEntity : DbMigration
     {
         public override void Up()
         {
