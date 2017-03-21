@@ -1,5 +1,7 @@
 ﻿@model EDeviceClaims.WebUi.Models.DeviceListViewModel
-
+@{
+    ViewBag.Title = "New Claim";
+}
 <div class="row">
     <div class="col-md-12">
         <h2>Manage My Devices</h2>
@@ -25,13 +27,27 @@
                 <div class="col-md-5" style="margin-top: 20px">
                     <ul style="list-style:none;">
 
-                        <li>@thing.Name </li>
-                        <li> @thing.SerialNumber</li>
-
+                        @*<li>Product: Model.Name</li>*@
+                        <li>Serial Number: @thing.SerialNumber</li>
+                        <li>Policy Number: @thing.PolicyNumber</li>
+                        <li>Purchase Date: @thing.WhenCreated</li>
+                        @if (thing.ShowViewClaimButton())
+                        { 
+                            <li>Last Updated: thing.WhenLastUpdated</li>
+                        }
                     </ul>
                 </div>
                 <div class="col-md-2" style="margin-top:200px">
-                    <a class="btn btn-default" href="/Home/Index">File A Claim &raquo;</a>
+                    @Html.Partial("GetClaimButton", thing)
+                    @*@if (thing.HasPendingClaim)
+                    {
+                        @Html.ActionLink("Check Claim Status", "Details", "Claims",  new { id = thing.PolicyId },  new { @class = "btn btn-warning btn-sm" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Submit a Claim", "NewClaim", "Claims", new { id = thing.PolicyId },  new { @class = "btn btn-danger btn-sm" })
+                    }*@
+                    @*@Html.ActionLink("Details", "Details", "Device", new { id = thing.PolicyId }, new { @class = "btn btn-danger btn-sm" })*@
                 </div>
                 
             </div>

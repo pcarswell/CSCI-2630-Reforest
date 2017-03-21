@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClaimRepository.cs" />
     <Compile Include="EDeviceClaimsUnitOfWork.cs" />
     <Compile Include="Migrations\201509041738522_updatedPolicyFieldLengths.cs" />
     <Compile Include="Migrations\201509041738522_updatedPolicyFieldLengths.Designer.cs">
@@ -63,6 +64,10 @@
     <Compile Include="Migrations\201509202149148_associateUserAndPolicy.cs" />
     <Compile Include="Migrations\201509202149148_associateUserAndPolicy.Designer.cs">
       <DependentUpon>201509202149148_associateUserAndPolicy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703121121346_AddClaimsEntity.cs" />
+    <Compile Include="Migrations\201703121121346_AddClaimsEntity.Designer.cs">
+      <DependentUpon>201703121121346_AddClaimsEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="PolicyRepository.cs" />
     <Compile Include="EfUnitOfWork.cs" />
@@ -107,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509202149148_associateUserAndPolicy.resx">
       <DependentUpon>201509202149148_associateUserAndPolicy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703121121346_AddClaimsEntity.resx">
+      <DependentUpon>201703121121346_AddClaimsEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
