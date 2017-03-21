@@ -6,15 +6,16 @@ namespace EDeviceClaims.WebUi.Models
 {
     public class DeviceViewModel
     {
-        public DeviceViewModel(PolicyDomainModel thing)
+        public DeviceViewModel(PolicyDomainModel policy)
         {
-            PolicyId = thing.Id;
-            PolicyNumber = thing.Number;
-            SerialNumber = thing.SerialNumber;
-            Name = thing.DeviceName;
-            WhenCreated = thing.WhenCreated;
-            WhenLastUpdated = thing.WhenLastUpdated;
-            HasPendingClaim = thing.Claims.Any();
+            PolicyId = policy.Id;
+            PolicyNumber = policy.Number;
+            SerialNumber = policy.SerialNumber;
+            Name = policy.DeviceName;
+            WhenCreated = policy.WhenCreated;
+            WhenLastUpdated = policy.WhenLastUpdated;
+            //HasPendingClaim = thing.Claims.Any();
+            MostCurrentClaim = (policy.Claims.Any()) ? new ClaimViewModel(policy.Claims.First()) : null;
         }
 
         public string Name { get; set; }
@@ -25,9 +26,14 @@ namespace EDeviceClaims.WebUi.Models
 
         public Guid PolicyId { get; set; }
 
-        public bool HasPendingClaim { get; set; }
+        public ClaimViewModel MostCurrentClaim { get; set; }
 
         public DateTime WhenCreated { get; set; }
         public DateTime? WhenLastUpdated { get; set; }
+
+        public bool ShowViewClaimButton()
+        {
+            return MostCurrentClaim != null;
+        }
     }
 }

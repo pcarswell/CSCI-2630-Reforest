@@ -31,7 +31,7 @@
                         <li>Serial Number: @thing.SerialNumber</li>
                         <li>Policy Number: @thing.PolicyNumber</li>
                         <li>Purchase Date: @thing.WhenCreated</li>
-                        @if (thing.HasPendingClaim)
+                        @if (thing.ShowViewClaimButton())
                         { 
                             <li>Last Updated: thing.WhenLastUpdated</li>
                         }
@@ -52,7 +52,7 @@
                 
             </div>
             
-        @*  *@}
+        }
 
         <!--<p><a class="btn btn-default" href="/Home/Index">File A Claim &raquo;</a></p>-->
     </div>

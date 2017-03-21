@@ -25,6 +25,12 @@ namespace EDeviceClaims.WebUi.Controllers
             return View(model);
         }
 
+        public ActionResult Edit(Guid id)
+        {
+            var claimDomainModel =  _claimsService.GetById(id);
+            var model = new ClaimViewModel(claimDomainModel);
+            return View(model);
+        }
         
         public ActionResult Details(Guid id)
         {

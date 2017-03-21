@@ -244,6 +244,7 @@
     <Content Include="Views\Device\Details.cshtml" />
     <Content Include="Views\Device\GetClaimButton.cshtml" />
     <Content Include="Views\Claims\Start.cshtml" />
+    <Content Include="Views\Claims\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

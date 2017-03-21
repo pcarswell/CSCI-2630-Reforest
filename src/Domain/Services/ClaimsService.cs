@@ -11,6 +11,7 @@ namespace EDeviceClaims.Domain.Services
     public interface IClaimsService
     {
         ClaimDomainModel StartClaim(Guid policyId);
+        ClaimDomainModel GetById(Guid id);
     }
 
     public class ClaimsService : IClaimsService
@@ -29,7 +30,15 @@ namespace EDeviceClaims.Domain.Services
         }
 
         private ICreateClaimsInteractor _createClaimsInteractor;
-        
+
+        private IGetClaimsInteractor GetClaimsInteractor
+        {
+            get { return _getClaimsInteractor ?? (_getClaimsInteractor = new GetClaimsInteractor()); }
+            set { _getClaimsInteractor = value; }
+        }
+
+        private IGetClaimsInteractor _getClaimsInteractor;
+
         public ClaimDomainModel StartClaim(Guid policyId)
         {
             var policy = GetPolicyInteractor.GetById(policyId);
@@ -38,6 +47,15 @@ namespace EDeviceClaims.Domain.Services
 
             var claim = CreateClaimsInteractor.Execute(policyId);
             //var existingClaim = CreateClaimsInteractor.GetByPolicyId(policyId);
+            return new ClaimDomainModel(claim);
+        }
+
+        public ClaimDomainModel GetById(Guid id)
+        {
+            var claim = GetClaimsInteractor.Execute(id);
+
+            if (claim == null) throw new ArgumentException("Claim does not exist");
+
             return new ClaimDomainModel(claim);
         }
     }
