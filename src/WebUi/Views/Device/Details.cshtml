@@ -33,7 +33,7 @@
                     <li>Policy Number: @Model.PolicyNumber</li>
                     <li>Purchase Date: @Model.WhenCreated</li>
                     <!-- include only if a claim has been filed-->
-                    @if (@Model.HasPendingClaim)
+                    @if (@Model.ShowViewClaimButton())
                     {
                         <li>Last Updated: @Model.WhenLastUpdated</li>
                     }
@@ -43,7 +43,7 @@
             </div>
             <div class="col-md-2" style="margin-top:200px">
                 
-                @if (Model.HasPendingClaim)
+                @if (Model.ShowViewClaimButton())
                 {
                     @Html.ActionLink("Check Claim Status", "Details", "Claims", routeValues: new { id = Model.PolicyId }, htmlAttributes: new { @class = "btn btn-warning btn-sm" })
                 }
