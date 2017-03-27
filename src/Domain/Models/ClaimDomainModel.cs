@@ -13,9 +13,11 @@ namespace EDeviceClaims.Domain.Models
         {
             Id = claim.Id;
             WhenStarted = claim.WhenCreated;
+            Policy = new PolicyDomainModel(claim.Policy);
         }
 
-        public Guid Id { get; set; }
         public DateTime WhenStarted { get; set; }
+        public Guid Id { get; set; }
+        public PolicyDomainModel Policy { get; set; }
     }
 }
