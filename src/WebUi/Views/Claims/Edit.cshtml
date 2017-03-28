@@ -1,27 +1,58 @@
 ﻿@model EDeviceClaims.WebUi.Models.ClaimViewModel
     
-<h2>Claim Id @Model.Id</h2>
-<h3>Status: @Model.Status</h3>
 
-<div>
-    <h4>Device Information</h4>
-    <div>@Model.DeviceName</div>
-    <div>@Model.PolicyNumber</div>
-    <div>@Model.SerialNumber</div>
-</div>
 
-<div>
-    
-</div>
 
-<div>
-    <h4>Notes</h4>
-    @foreach (var note in Model.Notes)
-    {
-        <div>
-            <span>@note.Content</span>
-            <span>@note.WhenCreated</span>
-            <span>@note.CreatedBy</span>
+    <div class="row">
+        <h1>My @Model.DeviceName</h1>
+            <div class="col-md-4">
+                @if (Model.DeviceName == "iPhone 6+")
+                {
+                    <img src="https://sc01.alicdn.com/kf/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4/200855197/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4.jpg" width="350" alt="IPhone" />
+                }
+                @if (Model.DeviceName == "Android")
+                {
+                    <img src="https://cdn.shopify.com/s/files/1/0808/0067/products/s7_edge_rugged_armor_title_f2701768-857d-4bb2-99d1-ceb484b5a017_large.jpg?v=1456440500" width="350" alt="Android" />
+                }
+                @if (Model.DeviceName == "Null")
+                {
+                    <img src="http://intraweb.stockton.edu/eyos/sobl/content/images/msw%20faculty/noimage.gif" width="350" alt="no image" />
+                }
+
+            </div>
+        <div class="col-md-8">
+            <h2>Claim Id: @Model.Id</h2>
+           
+            <h3>Status:
+            @if (Model.Status == null)
+            {
+                @Html.Label("Pending");
+            }
+
+            else {
+                @Model.Status;
+            }
+
+            </h3>
+            <div>
+                <h4>Notes:</h4>
+                @foreach (var note in Model.Notes)
+            {
+                    <div>
+                        <span>@note.Content</span>
+                        <span>@note.WhenCreated</span>
+                        <span>@note.CreatedBy</span>
+                    </div>
+                }
+            </div>
+            <br />
+            <hr />
+            <h4>Device Information</h4>
+            <div>Device Name: @Model.DeviceName</div>
+            <div>Policy Number: @Model.PolicyNumber</div>
+            <div>Serial Number: @Model.SerialNumber</div>
         </div>
-    }
-</div>
+     
+        </div>
+
+        

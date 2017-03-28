@@ -22,6 +22,35 @@ select,
 textarea {
     max-width: 280px;
 }
+.footer{
+  background-color: #222222;
+  align-content: center;
+  text-align: center;
+  position: fixed;
+}
+
+.footer-fixed-bottom { 
+  background-color: #222222;
+  text-align: center;
+  align-content: center;   
+  height: 100px;
+  padding-top:20px;
+}
+
+.footer-fixed-bottom > p { background-color: #222222;
+  align-content: center;
+  text-align: center;
+  text-decoration-color: #ffffff;
+  color: #ffffff;
+
+}
+.footer > p {
+  background-color: #222222;
+  align-content: center;
+  text-align: center;
+  text-decoration-color: #ffffff;
+  color: #ffffff;
+}
 
 .footer > li {
   position: relative;
@@ -32,6 +61,7 @@ textarea {
   position: relative;
   display: block;
   padding: 10px 15px;
+  color: #ffffff;
 }
 
 .footer > li > a:hover,

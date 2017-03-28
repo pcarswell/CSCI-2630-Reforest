@@ -32,17 +32,18 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
+    </div>
         <footer>
            
             
-            <div align="center">
+            <div class= "footer-fixed-bottom">
                 
                 <p>@Html.ActionLink("Home", "Index", "Home")  |  @Html.ActionLink("About", "About", "Home")  |  @Html.ActionLink("Contact", "Contact", "Home")  |  @Html.ActionLink("Login", "Login", "Account")</p>
                 <p>&copy; @DateTime.Now.Year - Source Tree - My Device Manager </p>
                 
             </div>
         </footer>
-    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -33,7 +33,19 @@
                         <li>Purchase Date: @thing.WhenCreated</li>
                         @if (thing.ShowViewClaimButton())
                         { 
-                            <li>Last Updated: thing.WhenLastUpdated</li>
+                            if (thing.WhenLastUpdated == null)
+                            {
+                                <li>Last Updated: @thing.WhenCreated </li>
+                                
+                            }
+                            else
+                            {
+                                <li>Last Updated: @thing.WhenLastUpdated </li>
+                                
+                            }
+
+
+                            
                         }
                     </ul>
                 </div>
