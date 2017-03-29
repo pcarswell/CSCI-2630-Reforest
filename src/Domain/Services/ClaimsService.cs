@@ -46,6 +46,8 @@ namespace EDeviceClaims.Domain.Services
             if (policy == null) throw new ArgumentException("Policy for that Policy Id does not exist");
 
             var claim = CreateClaimsInteractor.Execute(policyId);
+
+            if (claim.Policy == null) claim.Policy = GetPolicyInteractor.GetById(claim.PolicyId);
             //var existingClaim = CreateClaimsInteractor.GetByPolicyId(policyId);
             return new ClaimDomainModel(claim);
         }
