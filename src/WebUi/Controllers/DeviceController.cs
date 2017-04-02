@@ -4,10 +4,11 @@ using System.Web.Mvc;
 using EDeviceClaims.Domain.Services;
 using EDeviceClaims.WebUi.Models;
 using System;
+using EDeviceClaims.Core;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = ApplicationRoles.PolicyHolder)]
     public class DeviceController : AppController
     {
         private IPolicyService _policyService = new PolicyService();
@@ -26,6 +27,5 @@ namespace EDeviceClaims.WebUi.Controllers
             var model = new DeviceViewModel(domainModel);
             return View(model);
         }
-                
     }
 }

@@ -6,7 +6,7 @@ namespace EDeviceClaims.WebUi.Models
 {
     public class DeviceViewModel
     {
-        public DeviceViewModel(PolicyDomainModel policy)
+        public DeviceViewModel(PolicyWithClaimsDomainModel policy)
         {
             PolicyId = policy.Id;
             PolicyNumber = policy.Number;
