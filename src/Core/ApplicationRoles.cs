@@ -6,4 +6,10 @@
         public const string Underwriter = "underwriter";
         public const string PolicyHolder = "policyholder";
     }
+    public enum ClaimStatus
+    {
+        Open,
+        Denied,
+        Approved
+    }
 }

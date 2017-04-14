@@ -10,8 +10,10 @@ namespace EDeviceClaims.Domain.Services
 {
     public interface IClaimsService
     {
-        ClaimDomainModel StartClaim(Guid policyId);
-        ClaimDomainModel GetById(Guid id);
+        ClaimsListViewModel StartClaim(Guid policyId);
+        ClaimsListViewModel GetById(Guid id);
+
+        List<ClaimsListViewModel> GetAllOpen();
     }
 
     public class ClaimsService : IClaimsService
@@ -39,7 +41,7 @@ namespace EDeviceClaims.Domain.Services
 
         private IGetClaimsInteractor _getClaimsInteractor;
 
-        public ClaimDomainModel StartClaim(Guid policyId)
+        public ClaimsListViewModel StartClaim(Guid policyId)
         {
             var policy = GetPolicyInteractor.GetById(policyId);
 
@@ -49,16 +51,23 @@ namespace EDeviceClaims.Domain.Services
 
             if (claim.Policy == null) claim.Policy = GetPolicyInteractor.GetById(claim.PolicyId);
             //var existingClaim = CreateClaimsInteractor.GetByPolicyId(policyId);
-            return new ClaimDomainModel(claim);
+            return new ClaimsListViewModel(claim);
         }
 
-        public ClaimDomainModel GetById(Guid id)
+        public ClaimsListViewModel GetById(Guid id)
         {
             var claim = GetClaimsInteractor.Execute(id);
 
             if (claim == null) throw new ArgumentException("Claim does not exist");
 
-            return new ClaimDomainModel(claim);
+            return new ClaimsListViewModel(claim);
+        }
+
+        public List<ClaimsListViewModel> GetAllOpen()
+        {
+
+            var openClaims = GetClaimsInteractor.GetAllOpen();
+            return openClaims.Select(claim => new ClaimsListViewModel(claim)).ToList();
         }
     }
 }

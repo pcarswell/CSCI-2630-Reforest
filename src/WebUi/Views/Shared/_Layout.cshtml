@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using EDeviceClaims.Core
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,14 +20,26 @@
                 </button>
               @Html.ActionLink("Source Tree - My Device Manager", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                @*<ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+             <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>*@
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    @if (Request.IsAuthenticated)
+                    {
+                    if (User.IsInRole(ApplicationRoles.PolicyHolder))
+                    {
+                    <li>@Html.ActionLink("My Devices", "Index", "Device")</li>
+                    }
+                    if(User.IsInRole(ApplicationRoles.Underwriter))
+                    {
+                        <li><a href="/underwriter/claims">Claims</a></li>
+                        @*<li>@Html.ActionLink("View Claims", "Index", "Claims")</li>*@
+                    }                    
+                    }
+                </ul>
                 @Html.Partial("_LoginPartial")
-            </div>
+            </div>            
         </div>
     </div>
     <div class="container body-content">

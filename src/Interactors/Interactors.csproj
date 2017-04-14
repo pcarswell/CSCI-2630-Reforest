@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CreateClaimsInteractor.cs" />
     <Compile Include="GetClaimsInteractor.cs" />
+    <Compile Include="IGetClaimInteractor.cs" />
     <Compile Include="IGetPolicyInteractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,7 +11,7 @@ using EDeviceClaims.Domain.Models;
 namespace EDeviceClaims.WebUi.Controllers
 {
     [Authorize(Roles = ApplicationRoles.PolicyHolder)]
-    public class ClaimsController : AppController
+    public class ClaimController : AppController
     {
         //private IPolicyService _policyService = new PolicyService();
         private IClaimsService _claimsService = new ClaimsService();
@@ -23,8 +23,7 @@ namespace EDeviceClaims.WebUi.Controllers
             var claimDomainModel = _claimsService.StartClaim(id);
             var model = new ClaimViewModel(claimDomainModel);
 
-            return View("Edit", model);
-            //return View(model);
+            return View("Edit",model);
         }
 
         public ActionResult Edit(Guid id)
