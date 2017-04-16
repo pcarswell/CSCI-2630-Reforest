@@ -16,6 +16,7 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
             var claims = _claimServices.GetAllOpen();
 
             var model = new ClaimsListViewModel(claims);
+
             return View("Index", model);
         }
     }

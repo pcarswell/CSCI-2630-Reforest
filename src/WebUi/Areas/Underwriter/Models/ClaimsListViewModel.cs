@@ -9,7 +9,7 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
 {
     public class ClaimsListViewModel : List<UnderwriterClaimViewModel>
     {
-        public ClaimsListViewModel(List<Domain.Models.ClaimsListViewModel> claims)
+        public ClaimsListViewModel(List<ClaimDomainModel> claims)
         {
             foreach (var claim in claims)
             {
@@ -20,15 +20,18 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
 
     public class UnderwriterClaimViewModel
     {
-        public UnderwriterClaimViewModel(Domain.Models.ClaimsListViewModel claim)
+        public UnderwriterClaimViewModel(ClaimDomainModel claim)
         {
             Id = claim.Id;
             PolicyId = claim.Policy.Id;
             Name = claim.Policy.DeviceName;
             Start = $"{claim.WhenStarted.ToShortDateString()} {claim.WhenStarted.ToShortDateString()}";
-
             Status = claim.Status.ToString();
+            PolicyHolderName = $"{claim.FirstName} {claim.LastName}";
         }
+
+        public string PolicyHolderName { get; set; }
+
         public Guid Id {  get; set; }
         public Guid PolicyId { get; set; }
         public string Name { get; set; }

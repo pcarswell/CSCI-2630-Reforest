@@ -2,12 +2,14 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using EDeviceClaims.Domain.Services;
 using EDeviceClaims.Entities;
 using EDeviceClaims.WebUi.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebUi;
+
 
 namespace EDeviceClaims.WebUi.Controllers
 {
@@ -16,6 +18,8 @@ namespace EDeviceClaims.WebUi.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+        private IProfileService _profileService = new ProfileService();
 
         public AccountController()
         {
@@ -78,6 +82,7 @@ namespace EDeviceClaims.WebUi.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    SetProfileCache(model.Email);
                     return  RedirectToAction("Index", "Device");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -88,6 +93,14 @@ namespace EDeviceClaims.WebUi.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+        }
+
+        private void SetProfileCache(string email)
+        {
+            var user = UserManager.FindByEmail(email);
+            var profile = _profileService.GetProfileByUserId(user.Id);
+            Session[UiConstrants.USER_FIRST_NAME_SESSION_KEY] = profile.FirstName;
+            Session[UiConstrants.USER_LAST_NAME_SESSION_KEY] = profile.LastName;
         }
 
         //
@@ -123,6 +136,7 @@ namespace EDeviceClaims.WebUi.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    
                     return RedirectToLocal(model.ReturnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -155,13 +169,13 @@ namespace EDeviceClaims.WebUi.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    SetProfileCache(model.Email);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -391,6 +405,8 @@ namespace EDeviceClaims.WebUi.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session[UiConstrants.USER_FIRST_NAME_SESSION_KEY] = string.Empty;
+            Session[UiConstrants.USER_LAST_NAME_SESSION_KEY] = string.Empty;
             return RedirectToAction("Index", "Home");
         }
 

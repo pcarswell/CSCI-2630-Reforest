@@ -1,4 +1,6 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using EDeviceClaims.Core
+@using EDeviceClaims.WebUi.Models
+@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -7,12 +9,21 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-          @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+          @Html.ActionLink("Hello " + Session[UiConstrants.USER_FIRST_NAME_SESSION_KEY] + " " + Session[UiConstrants.USER_LAST_NAME_SESSION_KEY] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         
         <!--only display is user authentication is not claims adjuster-->
-        <li><a href="/Device">Manage My Devices</a></li>
+        @*<li><a href="/Device">Manage My Devices</a></li>*@
         <!--else display Manage claims link-->
+        @if (User.IsInRole(ApplicationRoles.PolicyHolder))
+        {
+            <li>@Html.ActionLink("My Devices", "Index", "Device")</li>
+        }
+        @if(User.IsInRole(ApplicationRoles.Underwriter))
+        {
+            <li><a href="/underwriter/claims">My Claims</a></li>
+            @*<li>@Html.ActionLink("View Claims", "Index", "Claims")</li>*@
+        } 
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         
     </ul>

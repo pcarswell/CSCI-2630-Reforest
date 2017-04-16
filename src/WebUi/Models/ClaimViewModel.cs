@@ -13,7 +13,7 @@ namespace EDeviceClaims.WebUi.Models
             Notes = new List<NoteViewModel>();
         }
 
-        public ClaimViewModel(ClaimsListViewModel domainModel) : this()
+        public ClaimViewModel(ClaimDomainModel domainModel) : this()
         {
             Id = domainModel.Id;
 

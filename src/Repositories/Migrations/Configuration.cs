@@ -41,9 +41,9 @@ namespace EDeviceClaims.Repositories.Migrations
             roleManager.Create(new IdentityRole { Name = ApplicationRoles.Underwriter});
             roleManager.Create(new IdentityRole { Name = ApplicationRoles.PolicyHolder});
 
-            var policyHolder = CreateUser("user@personal.com", "user@personal.com", context, ApplicationRoles.PolicyHolder);
-            CreateUser("admin@company.com", "admin@company.com", context, ApplicationRoles.Admin);
-            CreateUser("callcenter@company.com", "callcenter@company.com", context, ApplicationRoles.Underwriter);
+            var policyHolder = CreateUser("user@personal.com", "user@personal.com", context, ApplicationRoles.PolicyHolder, "Quincy", "Magoo");
+            CreateUser("admin@company.com", "admin@company.com", context, ApplicationRoles.Admin, "Edwin", "Pumpernickle");
+            CreateUser("callcenter@company.com", "callcenter@company.com", context, ApplicationRoles.Underwriter, "Paul", "McCartney");
 
             var p1 = new PolicyEntity
             {
@@ -83,7 +83,12 @@ namespace EDeviceClaims.Repositories.Migrations
             //context.SaveChanges();
         }
 
-        public AuthorizedUser CreateUser(string userName, string email, EDeviceClaimsContext context, string role = ApplicationRoles.PolicyHolder)
+        public AuthorizedUser CreateUser(string userName, 
+            string email, 
+            EDeviceClaimsContext context, 
+            string role = ApplicationRoles.PolicyHolder,
+            string firstName = "",
+            string lastName = "")
         {
             var userStore = new UserStore<AuthorizedUser>(context);
             var userManager = new UserManager<AuthorizedUser>(userStore);
@@ -92,7 +97,7 @@ namespace EDeviceClaims.Repositories.Migrations
 
             if (user != null) return user;
 
-            user = new AuthorizedUser { UserName = userName, Email = email };
+            user = new AuthorizedUser { UserName = userName, Email = email, FirstName = firstName, LastName = lastName};
             userManager.Create(user, "password");
             userManager.AddToRole(user.Id, role);
             //roleManager.Create(new IdentityRole { Name = "admin" });

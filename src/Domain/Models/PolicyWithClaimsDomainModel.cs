@@ -41,10 +41,10 @@ namespace EDeviceClaims.Domain.Models
 
             foreach (var claim in claims)
             {
-                Claims.Add(new ClaimsListViewModel(claim));
+                Claims.Add(new ClaimDomainModel(claim));
             }
         }
         
-        public List<ClaimsListViewModel> Claims { get; set; } = new List<ClaimsListViewModel>();
+        public List<ClaimDomainModel> Claims { get; set; } = new List<ClaimDomainModel>();
     }
 }
