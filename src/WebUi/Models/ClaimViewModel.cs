@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Models;
 
 namespace EDeviceClaims.WebUi.Models
@@ -16,7 +17,7 @@ namespace EDeviceClaims.WebUi.Models
         public ClaimViewModel(ClaimDomainModel domainModel) : this()
         {
             Id = domainModel.Id;
-
+            //Status = domainModel.Status;
             SetPolicyProperties(domainModel.Policy);
         }
 
@@ -32,7 +33,7 @@ namespace EDeviceClaims.WebUi.Models
         public string PolicyNumber { get; set; }
         public string DeviceName { get; set; }
         public string SerialNumber { get; set; }
-        public string Status { get; set; }
+        public ClaimStatus Status { get; set; }
         public List<NoteViewModel> Notes { get; set; }
 
     }

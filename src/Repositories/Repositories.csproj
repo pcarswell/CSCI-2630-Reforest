@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201704151141324_add user properties.Designer.cs">
       <DependentUpon>201704151141324_add user properties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704172321380_addedNotesEntity.cs" />
+    <Compile Include="Migrations\201704172321380_addedNotesEntity.Designer.cs">
+      <DependentUpon>201704172321380_addedNotesEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProfileRepository.cs" />
     <Compile Include="PolicyRepository.cs" />
     <Compile Include="EfUnitOfWork.cs" />
@@ -130,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704151141324_add user properties.resx">
       <DependentUpon>201704151141324_add user properties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704172321380_addedNotesEntity.resx">
+      <DependentUpon>201704172321380_addedNotesEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ClaimDomainModel.cs" />
+    <Compile Include="Models\NoteDomainModel.cs" />
     <Compile Include="Models\PolicyWithClaimsDomainModel.cs" />
     <Compile Include="Models\ProfileDomainModel.cs" />
     <Compile Include="Services\ClaimsService.cs" />

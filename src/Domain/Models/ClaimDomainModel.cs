@@ -3,6 +3,7 @@ using EDeviceClaims.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +23,14 @@ namespace EDeviceClaims.Domain.Models
 
             FirstName = claim.Policy.User.FirstName;
             LastName = claim.Policy.User.LastName;
+
+            foreach (var note in claim.Notes)
+            {
+                Notes.Add(new NoteDomainModel(note));
+            }
         }
+
+        public List<NoteDomainModel> Notes { get; set; } = new List<NoteDomainModel>();
 
         public string UserId { get; set; }
 

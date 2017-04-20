@@ -171,6 +171,7 @@
     <Compile Include="Areas\Underwriter\Controllers\ClaimsController.cs" />
     <Compile Include="Areas\Underwriter\Controllers\DeviceController.cs" />
     <Compile Include="Areas\Underwriter\Models\ClaimsListViewModel.cs" />
+    <Compile Include="Areas\Underwriter\Models\EditClaimViewModel.cs" />
     <Compile Include="Areas\Underwriter\UnderwriterAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppController.cs" />
@@ -206,6 +207,8 @@
     <Content Include="Areas\Underwriter\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Underwriter\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Underwriter\Views\Claims\Index.cshtml" />
+    <Content Include="Areas\Underwriter\Views\Claims\Edit.cshtml" />
+    <Content Include="Areas\Underwriter\Views\Claims\_note.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -253,11 +256,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Device\Index.cshtml" />
-    <Content Include="Views\Claims\Details.cshtml" />
     <Content Include="Views\Device\Details.cshtml" />
     <Content Include="Views\Device\GetClaimButton.cshtml" />
-    <Content Include="Views\Claims\Start.cshtml" />
-    <Content Include="Views\Claims\Edit.cshtml" />
     <Content Include="Views\Claim\Start.cshtml" />
     <Content Include="Views\Claim\Edit.cshtml" />
   </ItemGroup>
