@@ -12,6 +12,8 @@ namespace EDeviceClaims.Domain.Services
     {
         ClaimDomainModel StartClaim(Guid policyId);
         ClaimDomainModel GetById(Guid id);
+
+        List<ClaimDomainModel> GetAllOpen();
     }
 
     public class ClaimsService : IClaimsService
@@ -59,6 +61,13 @@ namespace EDeviceClaims.Domain.Services
             if (claim == null) throw new ArgumentException("Claim does not exist");
 
             return new ClaimDomainModel(claim);
+        }
+
+        public List<ClaimDomainModel> GetAllOpen()
+        {
+
+            var openClaims = GetClaimsInteractor.GetAllOpen();
+            return openClaims.Select(claim => new ClaimDomainModel(claim)).ToList();
         }
     }
 }

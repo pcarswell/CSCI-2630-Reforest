@@ -168,11 +168,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Underwriter\Controllers\ClaimsController.cs" />
     <Compile Include="Areas\Underwriter\Controllers\DeviceController.cs" />
+    <Compile Include="Areas\Underwriter\Models\ClaimsListViewModel.cs" />
+    <Compile Include="Areas\Underwriter\Models\EditClaimViewModel.cs" />
     <Compile Include="Areas\Underwriter\UnderwriterAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppController.cs" />
-    <Compile Include="Controllers\ClaimsController.cs" />
+    <Compile Include="Controllers\ClaimController.cs" />
     <Compile Include="Controllers\DeviceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -185,6 +188,7 @@
     <Compile Include="Models\DeviceViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NoteViewModel.cs" />
+    <Compile Include="Models\UIConstrants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -200,6 +204,11 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Underwriter\Views\web.config" />
     <Content Include="Areas\Underwriter\Views\Devices\Index.cshtml" />
+    <Content Include="Areas\Underwriter\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Underwriter\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Underwriter\Views\Claims\Index.cshtml" />
+    <Content Include="Areas\Underwriter\Views\Claims\Edit.cshtml" />
+    <Content Include="Areas\Underwriter\Views\Claims\_note.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -247,19 +256,16 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Device\Index.cshtml" />
-    <Content Include="Views\Claims\Details.cshtml" />
     <Content Include="Views\Device\Details.cshtml" />
     <Content Include="Views\Device\GetClaimButton.cshtml" />
-    <Content Include="Views\Claims\Start.cshtml" />
-    <Content Include="Views\Claims\Edit.cshtml" />
+    <Content Include="Views\Claim\Start.cshtml" />
+    <Content Include="Views\Claim\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\Underwriter\Models\" />
-    <Folder Include="Areas\Underwriter\Views\Shared\" />
     <Folder Include="Content\images\" />
   </ItemGroup>
   <ItemGroup>

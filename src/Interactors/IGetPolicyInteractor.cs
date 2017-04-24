@@ -7,7 +7,7 @@ using EDeviceClaims.Repositories.Migrations;
 
 namespace EDeviceClaims.Interactors
 {
-  public interface IGetPolicyInteractor
+    public interface IGetPolicyInteractor
   {
     PolicyEntity GetById(Guid id);
     PolicyEntity GetByNumber(string number);

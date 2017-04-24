@@ -1,4 +1,5 @@
-﻿using EDeviceClaims.Entities;
+﻿using EDeviceClaims.Core;
+using EDeviceClaims.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,7 +11,8 @@ namespace EDeviceClaims.Repositories
 {
     public interface IClaimRepository : IEfRepository<ClaimEntity, Guid>
     {
-        //ClaimEntity GetByPolicyId(Guid policyId);
+        List<ClaimEntity> GetAllOpen();
+        ClaimEntity GetByIdWithNotes(Guid id);
     }
 
     public class ClaimRepository : EfRepository<ClaimEntity, Guid>, IClaimRepository
@@ -35,5 +37,19 @@ namespace EDeviceClaims.Repositories
         //    return ObjectSet
         //    .FirstOrDefault(c => c.PolicyId == policyId);
         //}
+
+        public List<ClaimEntity> GetAllOpen()
+        {
+            return ObjectSet.Where(c => c.Status == ClaimStatus.Open)
+            .Include(c => c.Policy)
+            .Include(c => c.Policy.User).ToList();
+        }
+
+        public ClaimEntity GetByIdWithNotes(Guid id)
+        {
+            return ObjectSet.Where(c => c.Id == id)
+                .Include(c => c.Notes.Select(n => n.User))
+                .FirstOrDefault();
+        }
     }
 }

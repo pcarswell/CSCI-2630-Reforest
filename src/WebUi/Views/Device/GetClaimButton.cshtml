@@ -2,9 +2,9 @@
 
 @if (Model.ShowViewClaimButton())
 {
-    @Html.ActionLink("View Claim", "Edit", "Claims", routeValues: new { id = Model.MostCurrentClaim.Id }, htmlAttributes: new { @class = "btn btn-warning btn-sm" })
+    @Html.ActionLink("View Claim", "Edit", "Claim", routeValues: new { id = Model.MostCurrentClaim.Id }, htmlAttributes: new { @class = "btn btn-warning btn-sm" })
 }
 else
 {
-    @Html.ActionLink("Submit a Claim", "Start", "Claims", routeValues: new { id = Model.PolicyId }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+    @Html.ActionLink("Submit a Claim", "Start", "Claim", routeValues: new { id = Model.PolicyId }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
 }

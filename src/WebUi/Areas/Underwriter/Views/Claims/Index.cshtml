@@ -1,0 +1,46 @@
+﻿@model EDeviceClaims.WebUi.Areas.Underwriter.Models.ClaimsListViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Manage Claims</h2>
+        @foreach (var claim in Model)
+        {
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom: 100px" align="left">
+                    <h3>Claim Id: @claim.Id</h3>
+                    <div class="col-md-6" align="center">
+                        @if (claim.Name == "iPhone 6+")
+                        {
+                            <img src="https://sc01.alicdn.com/kf/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4/200855197/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4.jpg" width="250" alt="IPhone" />
+                        }
+                        @if (claim.Name == "Android")
+                        {
+                            <img src="https://cdn.shopify.com/s/files/1/0808/0067/products/s7_edge_rugged_armor_title_f2701768-857d-4bb2-99d1-ceb484b5a017_large.jpg?v=1456440500" width="250" alt="Android" />
+                        }
+                        @if (claim.Name == "Null")
+                        {
+                            <img src="http://intraweb.stockton.edu/eyos/sobl/content/images/msw%20faculty/noimage.gif" width="250" alt="no image" />
+                        }
+                    </div>
+                    <div class="col-md-6" align="left" style="margin-bottom: 100px">
+
+                        <ul style="list-style: none;">
+                            <li><b>Customer:</b> @claim.PolicyHolderName</li>
+                            <li><b>Policy Id:</b> @claim.PolicyId</li>
+                            <li><b>Device:</b> @claim.Name</li>
+                            <li><b>Claim Date:</b> @claim.Start</li>
+                            <li><b>Status:</b> @claim.Status</li>
+                            <li>&nbsp;</li>
+                            <li>
+                                @Html.ActionLink("Edit Claim", "Edit", "Claims", routeValues: new { id = claim.Id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-12" style="margin-bottom: 10px" align="left">
+                </div>
+            </div>
+        }
+        <br />
+    </div>
+</div>

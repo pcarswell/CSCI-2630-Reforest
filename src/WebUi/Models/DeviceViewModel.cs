@@ -14,7 +14,6 @@ namespace EDeviceClaims.WebUi.Models
             Name = policy.DeviceName;
             WhenCreated = policy.WhenCreated;
             WhenLastUpdated = policy.WhenLastUpdated;
-            //HasPendingClaim = thing.Claims.Any();
             MostCurrentClaim = (policy.Claims.Any()) ? new ClaimViewModel(policy.Claims.First()) : null;
         }
 

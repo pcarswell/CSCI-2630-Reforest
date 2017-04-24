@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using EDeviceClaims.Core;
 
 namespace EDeviceClaims.Entities
 {
@@ -12,5 +14,7 @@ namespace EDeviceClaims.Entities
     {
         public Guid PolicyId { get; set; }
         public virtual PolicyEntity Policy { get; set; }
+        public ClaimStatus Status { get; set; } = ClaimStatus.Open;
+        public virtual List<NoteEntity> Notes{ get; set; } = new List<NoteEntity>();
     }
 }

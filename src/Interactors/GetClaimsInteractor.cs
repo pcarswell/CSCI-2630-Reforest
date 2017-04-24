@@ -11,6 +11,7 @@ namespace EDeviceClaims.Interactors
     public interface IGetClaimsInteractor
     {
         ClaimEntity Execute(Guid id);
+        List<ClaimEntity> GetAllOpen();
     }
 
     public class GetClaimsInteractor : IGetClaimsInteractor
@@ -34,7 +35,12 @@ namespace EDeviceClaims.Interactors
 
         public ClaimEntity Execute(Guid id)
         {
-            return Repo.GetById(id);
+            return Repo.GetByIdWithNotes(id);
+        }
+
+        public List<ClaimEntity> GetAllOpen()
+        {
+            return Repo.GetAllOpen();
         }
     }
 }
