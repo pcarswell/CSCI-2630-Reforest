@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Services;
 using EDeviceClaims.Entities;
 using EDeviceClaims.WebUi.Models;
@@ -18,7 +19,8 @@ namespace EDeviceClaims.WebUi.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        
+        private IPolicyService _policyService = new PolicyService();
         private IProfileService _profileService = new ProfileService();
 
         public AccountController()
@@ -164,12 +166,16 @@ namespace EDeviceClaims.WebUi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new AuthorizedUser { UserName = model.Email, Email = model.Email };
+                string role = ApplicationRoles.PolicyHolder;
+                var user = new AuthorizedUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    //associate new user with policy by user email address
+                    _policyService.AssociateExistingDevices(user.Id);
 
+                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    UserManager.AddToRole(user.Id, role);
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

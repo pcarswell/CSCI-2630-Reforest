@@ -9,6 +9,7 @@ namespace EDeviceClaims.Interactors
 {
     public interface IGetPolicyInteractor
   {
+     IPolicyRepository Repo { get; set; }
     PolicyEntity GetById(Guid id);
     PolicyEntity GetByNumber(string number);
     ICollection<PolicyEntity> GetByCustomerEmailAdress(string email);
@@ -18,7 +19,7 @@ namespace EDeviceClaims.Interactors
   public class GetPolicyInteractor : IGetPolicyInteractor
   {
 
-    private IPolicyRepository Repo
+    public IPolicyRepository Repo
     {
       get { return _repo ?? (_repo = new PolicyRepository()); }
       set { _repo = value; }
@@ -45,7 +46,7 @@ namespace EDeviceClaims.Interactors
 
     public ICollection<PolicyEntity> GetByCustomerEmailAdress(string email)
     {
-      throw new NotImplementedException();
+        return Repo.GetByEmailAddress(email);
     }
 
     public ICollection<PolicyEntity> GetByUserId(string userId)

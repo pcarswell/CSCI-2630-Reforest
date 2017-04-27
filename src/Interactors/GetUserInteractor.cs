@@ -12,6 +12,7 @@ namespace EDeviceClaims.Interactors
     {
         AuthorizedUser GetById(string userId);
     }
+
     public class GetUserInteractor : IGetUserInteractor
     {
         private IUserRepository Repo
@@ -28,9 +29,9 @@ namespace EDeviceClaims.Interactors
             _repo = userRepo;
         }
 
-        public AuthorizedUser GetById(string UserId)
+        public AuthorizedUser GetById(string userId)
         {
-            return Repo.GetById(UserId);
+            return Repo.GetById(userId);
         }
     }
 }
