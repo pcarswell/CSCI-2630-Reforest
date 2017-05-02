@@ -7,53 +7,48 @@
 
         <div class="col-md-12" style="margin-bottom: 100px" align="left">
             <h3>Claim Id: @Model.Id</h3>
-            <div class="col-md-6" align="center">
-                This is where all the stuff is going to be :-)
-                @*@if (claim.Name == "iPhone 6+")
-                    {
-                        <img src="https://sc01.alicdn.com/kf/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4/200855197/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4.jpg" width="250" alt="IPhone" />
-                    }
-                    @if (claim.Name == "Android")
-                    {
-                        <img src="https://cdn.shopify.com/s/files/1/0808/0067/products/s7_edge_rugged_armor_title_f2701768-857d-4bb2-99d1-ceb484b5a017_large.jpg?v=1456440500" width="250" alt="Android" />
-                    }
-                    @if (claim.Name == "Null")
-                    {
-                        <img src="http://intraweb.stockton.edu/eyos/sobl/content/images/msw%20faculty/noimage.gif" width="250" alt="no image" />
-                    }*@
-            </div>
-            <div class="col-md-6" align="left" style="margin-bottom: 100px">
+            <div class="col-md-12" align="left">
+                <div class="col-md-4" align="left">
+                    <img src="https://sc01.alicdn.com/kf/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4/200855197/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4.jpg" width="250" alt="IPhone" />
+                    </div>
+                    <div class="col-md-6" align="left" style="margin-bottom: 50px">
 
-                <ul style="list-style: none;">
-                    <li><b>Policy Holder: @Model.FirstName @Model.LastName</b></li>
-                    <li><b>Policy Id: @Model.PolicyId</b></li>
-                    @*<li><b>Device: @Model.</b></li>*@
-                    <li><b>Claim Date: @Model.WhenStarted.ToShortDateString()</b></li>
-                    <li>
-                        <b>Status: @Model.Status </b>
-                        <select>
-                            <option>@ClaimStatus.Open</option>
-                            <option>@ClaimStatus.Denied</option>
-                            <option>@ClaimStatus.Approved</option>
-                        </select>
-                    </li>
-                    <li>&nbsp;</li>
-                    @*<li>
-                            @Html.ActionLink("Edit Claim", "Edit", "Claims", routeValues: new { id = claim.Id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
-                        </li>*@
-                </ul>
-            </div>
+                        <ul style="list-style: none;">
+                            <li><b>Policy Holder: @Model.FirstName @Model.LastName</b></li>
+                            <li><b>Policy Id: @Model.PolicyId</b></li>
+                            @*<li><b>Device: @Model.</b></li>*@
+                            <li><b>Claim Date: @Model.WhenStarted.ToShortDateString()</b></li>
+                            <li>
+                                <b>Status: @Model.Status </b>
+                                <select>
+                                    <option>@ClaimStatus.Open</option>
+                                    <option>@ClaimStatus.Denied</option>
+                                    <option>@ClaimStatus.Approved</option>
+                                </select>
+                            </li>
+                            <li>&nbsp;</li>
+                            @*<li>
+                    @Html.ActionLink("Edit Claim", "Edit", "Claims", routeValues: new { id = claim.Id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                </li>*@
+                        </ul>
+                        <div class="col-md-4" align="left" style="margin-bottom: 50px">
+                            @foreach (var note in Model.Notes)
+                            {
+                                @Html.Partial("_note", note);
+                            }
+                            <textarea cols="80" rows="6"></textarea><br /><br />
+                            <div class="col-md-6" align="right">
+                                @Html.ActionLink("Save Note", "Edit", "Claims", routeValues: new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                                <br />
+                            </div>
+                            </div>
+                        </div>
+
+                </div>
+            
         </div>
-        <hr/>
-        @foreach (var note in Model.Notes)
-        {
-            @Html.Partial("_note", note);
-        }
-        <textarea cols="80" rows="10">
 
-        </textarea>
-        @Html.ActionLink("Save Note", "Edit", "Claims", routeValues: new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
-        <br />
+       
     </div>
 </div>
 

@@ -8,8 +8,8 @@
 
         @foreach (var thing in Model)
             {
-            <div class="col-md-10" style="margin-bottom:20px">
-                <div class="col-md-3">
+            <div class="col-md-12" style="margin-bottom:20px">
+                <div class="col-md-4">
                     @if (thing.Name == "iPhone 6+")
                     {
                         <img src="https://sc01.alicdn.com/kf/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4/200855197/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4.jpg" width="250" alt="IPhone"/>
@@ -18,13 +18,17 @@
                     {
                         <img src="https://cdn.shopify.com/s/files/1/0808/0067/products/s7_edge_rugged_armor_title_f2701768-857d-4bb2-99d1-ceb484b5a017_large.jpg?v=1456440500" width="250" alt="Android"/>
                     }
+                    @if (thing.Name == "Windows")
+                    {
+                        <img src="http://imagescdn.tweaktown.com/news/4/8/48962_034_microsoft-updates-windows-device-recovery-lumia-550-950-xl_full.jpg" width="350" alt="Windows Lumia" />
+                    }
                     @if (thing.Name == "Null")
                     {
                         <img src="http://intraweb.stockton.edu/eyos/sobl/content/images/msw%20faculty/noimage.gif" width="250" alt="no image"/>
                     }
                     
                 </div>
-                <div class="col-md-5" style="margin-top: 20px">
+                <div class="col-md-6" style="margin-top: 20px">
                     <ul style="list-style:none;">
 
                         @*<li>Product: Model.Name</li>*@
