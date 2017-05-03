@@ -11,6 +11,7 @@ namespace EDeviceClaims.Repositories
         PolicyEntity GetByPolicyNumber(string number);
         ICollection<PolicyEntity> GetByUserId(string userId);
 
+        ICollection<PolicyEntity> GetByEmailAddress(string email);
     }
 
     public class PolicyRepository : EfRepository<PolicyEntity, Guid>, IPolicyRepository
@@ -32,6 +33,11 @@ namespace EDeviceClaims.Repositories
         public ICollection<PolicyEntity> GetByUserId(string userId)
         {
             return ObjectSet.Where(p => p.UserId == userId).Include(c => c.Claims).ToList();
+        }
+
+        public ICollection<PolicyEntity> GetByEmailAddress(string email)
+        {
+            return ObjectSet.Where(p => p.CustomerEmail == email).ToList();
         }
     }
 }

@@ -79,6 +79,10 @@
       <Project>{BC7C5B57-DEB4-4C2F-8EAC-C9B44A3B39BB}</Project>
       <Name>Interactors</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Repositories\Repositories.csproj">
+      <Project>{621923EA-BAA3-4176-BD20-D398EA0C9783}</Project>
+      <Name>Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

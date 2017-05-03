@@ -12,6 +12,7 @@ namespace EDeviceClaims.Domain.Services
         IEnumerable<PolicyWithClaimsDomainModel> GetByUserId(string userId);
 
         PolicyWithClaimsDomainModel GetById(Guid id);
+        void AssociateExistingDevices(string userId);
     }
 
     public class PolicyService : IPolicyService
@@ -22,6 +23,14 @@ namespace EDeviceClaims.Domain.Services
         {
             get { return _getPolicyInteractor ?? (_getPolicyInteractor = new GetPolicyInteractor()); }
             set { _getPolicyInteractor = value; }
+        }
+
+        private IGetUserInteractor _getUserInteractor;
+
+        private IGetUserInteractor GetUserInteractor
+        {
+            get { return _getUserInteractor ?? (_getUserInteractor = new GetUserInteractor()); }
+            set { _getUserInteractor = value; }
         }
 
         public IEnumerable<PolicyWithClaimsDomainModel> GetByUserId(string userId)
@@ -36,6 +45,19 @@ namespace EDeviceClaims.Domain.Services
             var entity = GetPolicyInteractor.GetById(id);
             if (entity == null) return null;
             return new PolicyWithClaimsDomainModel(entity);
+        }
+
+        public void AssociateExistingDevices(string userId)
+        {
+            var user = GetUserInteractor.GetById(userId);
+            if (user == null) throw new Exception();
+            var devices = GetPolicyInteractor.GetByCustomerEmailAdress(user.Email);
+            foreach (var device in devices)
+            {
+                device.UserId = user.Id;
+            }
+
+            GetPolicyInteractor.Repo.EfUnitOfWork.Context.SaveChanges();
         }
     }
 }

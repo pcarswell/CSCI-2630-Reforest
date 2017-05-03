@@ -209,6 +209,8 @@
     <Content Include="Areas\Underwriter\Views\Claims\Index.cshtml" />
     <Content Include="Areas\Underwriter\Views\Claims\Edit.cshtml" />
     <Content Include="Areas\Underwriter\Views\Claims\_note.cshtml" />
+    <None Include="Properties\PublishProfiles\cscc-edivices - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\cscc-edivices - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
