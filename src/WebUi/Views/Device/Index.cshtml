@@ -8,67 +8,67 @@
 
         @foreach (var thing in Model)
             {
-            <div class="col-md-12" style="margin-bottom:20px">
-                <div class="col-md-4">
-                    @if (thing.Name == "iPhone 6+")
-                    {
-                        <img src="https://sc01.alicdn.com/kf/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4/200855197/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4.jpg" width="250" alt="IPhone"/>
-                    }
-                    @if (thing.Name == "Android")
-                    {
-                        <img src="https://cdn.shopify.com/s/files/1/0808/0067/products/s7_edge_rugged_armor_title_f2701768-857d-4bb2-99d1-ceb484b5a017_large.jpg?v=1456440500" width="250" alt="Android"/>
-                    }
-                    @if (thing.Name == "Windows")
-                    {
-                        <img src="http://imagescdn.tweaktown.com/news/4/8/48962_034_microsoft-updates-windows-device-recovery-lumia-550-950-xl_full.jpg" width="350" alt="Windows Lumia" />
-                    }
-                    @if (thing.Name == "Null")
-                    {
-                        <img src="http://intraweb.stockton.edu/eyos/sobl/content/images/msw%20faculty/noimage.gif" width="250" alt="no image"/>
-                    }
-                    
-                </div>
-                <div class="col-md-6" style="margin-top: 20px">
-                    <ul style="list-style:none;">
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom:20px">
+                    <div class="col-md-4">
+                        @if (thing.Name == "iPhone 6+")
+                        {
+                            <img src="https://sc01.alicdn.com/kf/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4/200855197/HTB1dBcZFFXXXXcAXpXXq6xXFXXX4.jpg" width="250" alt="IPhone" />
+                        }
+                        @if (thing.Name == "Android")
+                        {
+                            <img src="https://cdn.shopify.com/s/files/1/0808/0067/products/s7_edge_rugged_armor_title_f2701768-857d-4bb2-99d1-ceb484b5a017_large.jpg?v=1456440500" width="250" alt="Android" />
+                        }
+                        @if (thing.Name == "Windows")
+                        {
+                            <img src="http://imagescdn.tweaktown.com/news/4/8/48962_034_microsoft-updates-windows-device-recovery-lumia-550-950-xl_full.jpg" width="350" alt="Windows Lumia" />
+                        }
+                        @if (thing.Name == "Null")
+                        {
+                            <img src="http://intraweb.stockton.edu/eyos/sobl/content/images/msw%20faculty/noimage.gif" width="250" alt="no image" />
+                        }
 
-                        @*<li>Product: Model.Name</li>*@
-                        <li>Serial Number: @thing.SerialNumber</li>
-                        <li>Policy Number: @thing.PolicyNumber</li>
-                        <li>Purchase Date: @thing.WhenCreated</li>
-                        @if (thing.ShowViewClaimButton())
-                        { 
-                            if (thing.WhenLastUpdated == null)
+                    </div>
+                    <div class="col-md-6" style="margin-top: 20px">
+                        <ul style="list-style:none;">
+
+                            @*<li>Product: Model.Name</li>*@
+                            <li>Serial Number: @thing.SerialNumber</li>
+                            <li>Policy Number: @thing.PolicyNumber</li>
+                            <li>Purchase Date: @thing.WhenCreated</li>
+                            @if (thing.ShowViewClaimButton())
                             {
-                                <li>Last Updated: @thing.WhenCreated </li>
-                                
+                                if (thing.WhenLastUpdated == null)
+                                {
+                                    <li>Last Updated: @thing.WhenCreated </li>
+
+                                }
+                                else
+                                {
+                                    <li>Last Updated: @thing.WhenLastUpdated </li>
+
+                                }
+                            }
+                            @*<li>@thing.MostCurrentClaim.Status</li>*@
+                        </ul>
+                    </div>
+                    <div class="col-md-2" style="margin-top:200px">
+                        @Html.Partial("GetClaimButton", thing)
+                        @*@if (thing.HasPendingClaim)
+                            {
+                                @Html.ActionLink("Check Claim Status", "Details", "Claims",  new { id = thing.PolicyId },  new { @class = "btn btn-warning btn-sm" })
                             }
                             else
                             {
-                                <li>Last Updated: @thing.WhenLastUpdated </li>
-                                
-                            }
-                        }
-                        @*<li>@thing.MostCurrentClaim.Status</li>*@
-                    </ul>
+                                @Html.ActionLink("Submit a Claim", "NewClaim", "Claims", new { id = thing.PolicyId },  new { @class = "btn btn-danger btn-sm" })
+                            }*@
+                        @*@Html.ActionLink("Details", "Details", "Device", new { id = thing.PolicyId }, new { @class = "btn btn-danger btn-sm" })*@
+                    </div>
+
                 </div>
-                <div class="col-md-2" style="margin-top:200px">
-                    @Html.Partial("GetClaimButton", thing)
-                    @*@if (thing.HasPendingClaim)
-                    {
-                        @Html.ActionLink("Check Claim Status", "Details", "Claims",  new { id = thing.PolicyId },  new { @class = "btn btn-warning btn-sm" })
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Submit a Claim", "NewClaim", "Claims", new { id = thing.PolicyId },  new { @class = "btn btn-danger btn-sm" })
-                    }*@
-                    @*@Html.ActionLink("Details", "Details", "Device", new { id = thing.PolicyId }, new { @class = "btn btn-danger btn-sm" })*@
-                </div>
-                
             </div>
-            
         }
 
         <!--<p><a class="btn btn-default" href="/Home/Index">File A Claim &raquo;</a></p>-->
     </div>
 </div>
-
